@@ -1,4 +1,4 @@
-module zep-logger
+module github.com/zep-us/otlpxy
 
 go 1.23.0
 

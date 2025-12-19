@@ -1,6 +1,6 @@
-## Zep Logger
+## otlpxy
 
-An Echo-based OTLP proxy and ingestion service with async forwarding, health/readiness probes, Prometheus metrics, CORS, and request size limits. Designed to accept OTLP logs/traces from browsers or services, inject an API key, and forward to your internal OpenTelemetry Collector.
+A lightweight OTLP proxy service with async forwarding, health/readiness probes, Prometheus metrics, CORS, and request size limits. Designed to accept OTLP logs/traces from browsers or services, inject an API key, and securely forward to your OpenTelemetry Collector.
 
 ### Features
 - Async forwarding via bounded worker pool (backpressure when queue is full)

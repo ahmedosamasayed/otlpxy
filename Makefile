@@ -1,4 +1,4 @@
-# Makefile for Zep Logger
+# Makefile for otlpxy
 # Supports: Development, Testing, Docker (multi-arch)
 
 # ============================================================================
@@ -6,7 +6,7 @@
 # ============================================================================
 
 # Application
-APP_NAME := zep-logger
+APP_NAME := otlpxy
 VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
 BUILD_TIME := $(shell date -u '+%Y-%m-%d_%H:%M:%S')
 COMMIT := $(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown")
@@ -23,7 +23,7 @@ LDFLAGS := -ldflags="-w -s -X main.Version=$(VERSION) -X main.BuildTime=$(BUILD_
 # Docker
 DOCKER := docker
 DOCKER_BUILDX := $(DOCKER) buildx
-IMAGE_NAME := zep-logger
+IMAGE_NAME := otlpxy
 IMAGE_TAG := $(VERSION)
 IMAGE_LATEST := latest
 

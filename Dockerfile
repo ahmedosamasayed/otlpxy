@@ -1,4 +1,4 @@
-# Multi-stage Dockerfile for Zep Logger
+# Multi-stage Dockerfile for otlpxy
 # Supports: linux/amd64, linux/arm64
 
 # Stage 1: Builder
@@ -32,10 +32,10 @@ RUN go test -v ./...
 # CGO_ENABLED=0 creates fully static binary (no libc dependencies)
 # -ldflags="-w -s" strips debug symbols (smaller binary)
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
-    go build -ldflags="-w -s" -o /app/zep-logger ./cmd/server
+    go build -ldflags="-w -s" -o /app/otlpxy ./cmd/server
 
 # Verify binary was created
-RUN test -f /app/zep-logger
+RUN test -f /app/otlpxy
 
 # Stage 2: Runtime
 FROM alpine:3.19
@@ -44,20 +44,20 @@ FROM alpine:3.19
 RUN apk --no-cache add ca-certificates tzdata
 
 # Create non-root user
-RUN adduser -D -u 10001 -g zep zep
+RUN adduser -D -u 10001 -g otlpxy otlpxy
 
 # Set working directory
 WORKDIR /app
 
 # Copy binary from builder
-COPY --from=builder /app/zep-logger /app/zep-logger
+COPY --from=builder /app/otlpxy /app/otlpxy
 COPY --from=builder /build/config.toml /app/config.toml
 
 # Change ownership to non-root user
-RUN chown -R zep:zep /app
+RUN chown -R otlpxy:otlpxy /app
 
 # Switch to non-root user
-USER zep
+USER otlpxy
 
 # Expose service port
 EXPOSE 8080
@@ -67,4 +67,4 @@ HEALTHCHECK --interval=10s --timeout=3s --start-period=5s --retries=3 \
     CMD wget --quiet --tries=1 --spider http://localhost:8080/healthz || exit 1
 
 # Run the binary
-ENTRYPOINT ["/app/zep-logger"]
+ENTRYPOINT ["/app/otlpxy"]

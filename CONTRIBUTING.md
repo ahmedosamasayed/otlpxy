@@ -1,6 +1,6 @@
-# Contributing to Zep Logger
+# Contributing to otlpxy
 
-Thank you for your interest in contributing to Zep Logger! We welcome contributions from the community.
+Thank you for your interest in contributing to otlpxy! We welcome contributions from the community.
 
 ## How to Contribute
 
@@ -40,8 +40,8 @@ We welcome feature requests! Please create an issue with:
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/logger.git
-cd logger
+git clone https://github.com/YOUR_USERNAME/otlpxy.git
+cd otlpxy
 
 # Install dependencies
 go mod download

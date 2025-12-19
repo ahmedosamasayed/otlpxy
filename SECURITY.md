@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-We take security seriously. If you discover a security vulnerability in Zep Logger, please report it responsibly.
+We take security seriously. If you discover a security vulnerability in otlpxy, please report it responsibly.
 
 ### How to Report
 
@@ -42,7 +42,7 @@ We provide security updates for:
 
 ## Security Best Practices
 
-When deploying Zep Logger:
+When deploying otlpxy:
 
 1. **Protect Your Config File**
    - Never commit `config.toml` with real credentials
