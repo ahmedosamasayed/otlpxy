@@ -9,7 +9,7 @@ We take security seriously. If you discover a security vulnerability in otlpxy, 
 **Please do NOT create a public GitHub issue for security vulnerabilities.**
 
 Instead, please report security issues by:
-1. Emailing us at: [your-security-email@example.com]
+1. Emailing us at: [jqyu.lee@gmail.com]
 2. Or creating a private security advisory on GitHub
 
 ### What to Include
@@ -72,4 +72,4 @@ When deploying otlpxy:
 
 ## Contact
 
-For security-related questions: [your-security-email@example.com]
+For security-related questions: [jqyu.lee@gmail.com]
