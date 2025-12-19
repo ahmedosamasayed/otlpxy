@@ -1,0 +1,43 @@
+# Zep Logger Configuration File
+# Copy this file to config.toml and fill in your actual values
+
+# OpenTelemetry Collector Target URL (required)
+otel_collector_target_url = "https://your-otel-collector.example.com"
+
+# Worker pool configuration
+worker_pool_size = 800
+job_queue_size = 50000
+
+# API key for authenticating with the OTEL collector (required)
+# Generate a secure random key for production use
+otel_collector_api_key = "your-api-key-here"
+
+# Graceful shutdown drain period in seconds (default: 2)
+shutdown_drain_seconds = 2
+
+# Graceful shutdown timeout in seconds (default: 10)
+shutdown_timeout_seconds = 10
+
+# Server port (default: 8080)
+server_port = 8080
+
+# CORS configuration
+# Add your allowed origins here
+allowed_origins = [
+  "https://localhost:5173",
+  "https://your-app.example.com",
+]
+max_request_size_mb = 1
+
+# Forwarding mode: "pool" (bounded worker pool) or "semaphore" (goroutine + semaphore) or "hybrid"
+# Default is "pool" to preserve existing behavior
+forwarding_mode = "hybrid"
+
+# Max concurrent requests for semaphore mode (ignored in pool mode)
+semaphore_max_concurrent = 8000
+
+# IMPORTANT: Must be true for HyperDX session replay to work!
+# true = /v1/logs uses synchronous forwarding (required for session replay)
+# false = /v1/logs uses async forwarding (breaks session replay but handles higher load)
+# Note: /v1/traces always uses async regardless of this setting (optimal for performance)
+sync_logs_debug = true

@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Build artifacts
+bin/
+coverage/
+*.out
+
+# Development files
+.env
+.env.*
+*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# BMAD workflows (not needed in container)
+bmad/
+.claude/
+
+# Testing
+*_test.go
+
+# Makefile (not needed in container)
+Makefile
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.circleci/
+
+# macOS
+.DS_Store
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Vendor (we download in Dockerfile)
+vendor/

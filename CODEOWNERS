@@ -1,0 +1,9 @@
+# CODEOWNERS
+* @Q00 @SwimmingHwang
+
+# Go files
+*.go @Q00
+
+# Documentation
+*.md @Q00 @SwimmingHwang
+docs/* @Q00 @SwimmingHwang
